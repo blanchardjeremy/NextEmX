@@ -3,7 +3,6 @@ from django import template
 from django.conf import settings
 from django.views.generic import TemplateView
 from nextemx.models import NextEmX
-from routeshout import RouteShoutAPI
 
 def error500(request, template_name='500.html'):
     t = template.loader.get_template(template_name)

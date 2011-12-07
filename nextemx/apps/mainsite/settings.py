@@ -118,7 +118,7 @@ def get_local_config(variable_name, default=None):
     """
     Allows for configuration to happen with environmental variables (for Heroku) or python variables (for PyCharm)
     """
-    py_var = locals().get(variable_name)
+    py_var = globals().get(variable_name)
     if py_var:
         return py_var
     os_var = os.environ.get(variable_name)

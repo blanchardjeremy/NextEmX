@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        {%block head%}
-            <title>{%block page_title%}{%endblock%}</title>
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <title>NextEmX</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+    {% block extrahead %}{% endblock %}
+</head> 
+<body>
 
-            <link rel="StyleSheet" href="{{STATIC_URL}}css/screen.css"/>
+<div data-role="page" data-theme="c">
 
-            <script src="{{STATIC_URL}}js/site.js"></script>
+    <div data-role="header">
+        <h1>{% block title %}Home{% endblock %}</h1>
+    </div><!-- /header -->
 
-        {%endblock head%}
-        {%block extrahead%} {%endblock extrahead%}
-    </head>
-    <body>
-        {%block body%}
+    <div data-role="content">
+        {% block content %}{% endblock content %}
+    </div><!-- /content -->
 
-            {%block pre_content%}{%endblock pre_content%}
+</div><!-- /page -->
 
-            {%block content%}{%endblock content%}
-
-            {%block post_content%}{%endblock post_content%}
-
-        {%endblock body%}
-
-        {%block extrabody%}{%endblock extrabody%}
-    </body>
+</body>
 </html>

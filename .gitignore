@@ -5,3 +5,4 @@ settings_local.py
 static/*
 uploads/*
 .DS_Store
+activate

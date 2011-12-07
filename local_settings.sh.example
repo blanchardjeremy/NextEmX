@@ -1,0 +1,4 @@
+CAR="ASDF"
+export CAR
+
+source ../env/bin/activate

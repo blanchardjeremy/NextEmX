@@ -1,0 +1,6 @@
+DJANGO_DEBUG = False
+ROUTESHOUT_API_KEY = ''
+
+DB_NAME = ''
+DB_USER = ''
+DB_PASS = ''

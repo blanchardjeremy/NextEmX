@@ -5,3 +5,7 @@ settings_local.py
 static/*
 uploads/*
 .DS_Store
+bin
+build
+include
+lib

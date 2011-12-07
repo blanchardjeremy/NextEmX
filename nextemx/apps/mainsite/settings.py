@@ -127,7 +127,7 @@ def get_local_config(variable_name, default=None):
     return default
 
 
-DEBUG = get_local_config('DJANGO_DEBUG', True)
+DEBUG = get_local_config('DJANGO_DEBUG', False)
 TEMPLATE_DEBUG = DEBUG
 
 TIME_ZONE = 'America/Los_Angeles'
@@ -168,5 +168,3 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False
     }
-
-print DEBUG

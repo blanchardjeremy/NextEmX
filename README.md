@@ -14,8 +14,8 @@ The EmX is a rapid bus transit line operated by Lane Transit District (LTD) in E
 ## Technology
 NextEmX uses the [RouteShout API](http://www.routeshout.com/main/api) for EmX stop information.
 
-    * Django
-    * [jQuery Mobile](http://jquerymobile.com/)
+  * Django
+  * [jQuery Mobile](http://jquerymobile.com/)
 
 
 ## Credits

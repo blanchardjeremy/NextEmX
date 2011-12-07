@@ -19,7 +19,11 @@ INSTALLED_APPS = [
     'django.contrib.admin',
 
     'mainsite',
+    'nextemx',
+    'routeshout',
 ]
+
+JINGO_EXCLUDE_APPS = ['admin']
 
 
 MIDDLEWARE_CLASSES = [

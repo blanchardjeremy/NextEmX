@@ -24,7 +24,7 @@ class TestView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(TestView, self).get_context_data(**kwargs)
-        api = RouteShoutAPI('e85e22cceb19cc296077fd21489ce9cf')
+        api = RouteShoutAPI(settings.ROUTESHOUT_API_KEY)
         a = api.agencies_getList()
         r = api.routes_getList('ltd')
         return context

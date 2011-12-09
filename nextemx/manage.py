@@ -12,7 +12,7 @@ if APPS_DIR not in sys.path:
     sys.path.insert(0, APPS_DIR)
 
 try:
-    from mainsite import settings
+    import settings
 except ImportError:
     sys.stderr.write("Error: Can't load python module 'mainsite.settings' from the directory containing %r. It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n" % __file__)
     sys.exit(1)

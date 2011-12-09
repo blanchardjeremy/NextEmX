@@ -49,13 +49,12 @@ class NextEmX(object):
 #        eugene_station_stop = 1310
 
         walnut = Stop(1651, self.LTD, name="walnut", api=self.api)
+        eugene = Stop(1310, self.LTD, name="eugene", api=self.api)
 #        walnut = self.get_stop_fake()
 
-        walnut_times = walnut.times
-        next = walnut.next
-
         result = {
-            'walnut': walnut_times,
+            'walnut': walnut.times,
+            'eugene': eugene.times,
         }
         return result
 

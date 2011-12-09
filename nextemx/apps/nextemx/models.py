@@ -1,12 +1,15 @@
 from hashlib import md5
+import json
 from django.db import models
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import force_unicode
-from routeshout import RouteShoutAPI
+from routeshout import *
 
 
 # Best tutorial on decorators: http://stackoverflow.com/questions/739654/understanding-python-decorators
+from routeshout.routeshout import StopTime
+
 def cacheable(timeout=None, key=None):
     timeout = timeout if timeout else settings.CACHES['default']['TIMEOUT']
 
@@ -43,18 +46,35 @@ class NextEmX(object):
 #        routes = self.api.routes_getList(self.LTD)
 #        emx_route = 4656
 #        stops = self.api.stops_getList(self.LTD, emx_route)
+#        eugene_station_stop = 1310
 
-        walnut_stop = 1651
-        eugene_station_stop = 1310
-        walnut_times = self.get_stop_times(walnut_stop)
-        eugene_station_times = self.get_stop_times(eugene_station_stop)
+        walnut = Stop(1651, self.LTD, name="walnut", api=self.api)
+#        walnut = self.get_stop_fake()
+
+        walnut_times = walnut.times
+        next = walnut.next
 
         result = {
             'walnut': walnut_times,
-            'eugene': eugene_station_times,
         }
         return result
 
     @cacheable()
     def get_stop_times(self, id):
-        return self.api.stops_getTimes(self.LTD, id)
+        stop = Stop(id, self.LTD, self.api)
+        return Stop.times
+
+    def get_stop_fake(self):
+        json_data = """
+        {"status":"ok","meta":{"timezone":"America/Los_Angeles"},"response":[{"type":"scheduled","route_short_name":"EmX","route_long_name":"EmX","arrival_time":"10:23 PM","departure_time":"10:23 PM","trip_id":"476847"},{"type":"scheduled","route_short_name":"EmX","route_long_name":"EmX","arrival_time":"10:40 PM","departure_time":"10:40 PM","trip_id":"478061"}]}
+        """
+        data = json.loads(json_data)
+        times = data['response']
+        l = []
+        for t in times:
+            l.append(StopTime(dict=t))
+
+        stop = Stop(123, 'LTD')
+        stop._times = l
+        return stop
+

@@ -80,3 +80,66 @@ class RouteShoutAPI(object):
         result = self.request(method, data)
         return result['response']
     
+
+
+class Stop(object):
+
+    _times = []
+
+    def __init__(self, id, agency, name="", api=None):
+        self.id = id
+        self.agency = agency
+        self.name = name
+
+        self.api = api
+
+    def __unicode__(self):
+        return u"%s - %s" % (self.id, self.agency)
+
+    def __str__(self):
+        return self.__unicode__()
+
+    @property
+    def times(self):
+        """
+        Returns an array of StopTime objects loaded from a dictionary passed by RouteSout
+        """
+
+        # Local caching
+        if not self._times:
+            self._times = []
+            stoptimes_data = self.api.stops_getTimes(self.agency, self.id)
+            for s in stoptimes_data:
+                new_stop_time = StopTime(dict=s, stop=self)
+                self._times.append(new_stop_time)
+        return self._times
+
+    @property
+    def next(self):
+        # Assumes top of list is next stop
+        next = self.times[0] if self.times[0] else None
+        return next
+
+class StopTime(object):
+
+    def __init__(self, departure_time=None, arrival_time=None, trip_id=None, route_long_name=None, route_short_name=None, dict=None, stop=None):
+
+        if dict:
+            departure_time =  dict['departure_time']
+            arrival_time = dict['arrival_time']
+            trip_id = dict['trip_id']
+            route_long_name = dict['route_long_name']
+            route_short_name = dict['route_short_name']
+
+        self.departure_time = departure_time
+        self.arrival_time = arrival_time
+        self.trip_id = trip_id
+        self.route_long_name = route_long_name
+        self.route_short_name = route_short_name
+        self.stop = stop
+
+    def __unicode__(self):
+        return u"%s - %s" % (self.departure_time, self.route_long_name)
+
+    def __str__(self):
+        return self.__unicode__()

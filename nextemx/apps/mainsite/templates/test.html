@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2>Walnut</h2>
-    {{ walnut }}
-    <h2>Eugene Station</h2>
-    {{ eugene }}
+    {% for time in walnut %}
+        {{ time }}<br>
+    {% endfor %}
 {% endblock content %}

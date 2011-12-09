@@ -3,7 +3,7 @@ import os
 
 
 # assume we are ./apps/mainsite/settings.py
-APPS_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+APPS_DIR = os.path.dirname(__file__)
 if APPS_DIR not in sys.path:
     sys.path.insert(0, APPS_DIR)
 
@@ -168,3 +168,4 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False
     }
+
